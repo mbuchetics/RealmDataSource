@@ -1,0 +1,2 @@
+git "ssh://git@git.allaboutapps.at:2222/aaaios/datasource.git"
+github "realm/realm-cocoa" ~> 0.96
