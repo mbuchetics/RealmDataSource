@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Realm
 import RealmSwift
 import DataSource
 import RealmDataSource
@@ -17,6 +18,7 @@ enum Identifiers: String {
 
 class RealmTableViewController: UITableViewController {
     var tableDataSource: TableViewDataSource!
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,32 +31,38 @@ class RealmTableViewController: UITableViewController {
         
         tableView.dataSource = tableDataSource
         tableView.reloadData()
+        
+        print(NameGenerator.firstName)
+        print(NameGenerator.lastName)
+    }
+    
+    var persons: Results<Person> {
+        return realm.objects(Person)
     }
     
     func setupRealm() {
-        let persons = [
-            Person(firstName: "Matthias", lastName: "Buchetics"),
-            Person(firstName: "Hugo", lastName: "Maier"),
-            Person(firstName: "Max", lastName: "Mustermann")
-        ]
+        var persons = Array<Person>()
         
-        let realm = try! Realm()
+        for _ in 0..<100 {
+            let p = Person(firstName: NameGenerator.firstName, lastName: NameGenerator.lastName)
+            persons.append(p)
+        }
         
         try! realm.write {
-            realm.deleteAll()
-            realm.add(persons)
+            self.realm.deleteAll()
+            self.realm.add(persons)
         }
     }
     
     func setupDataSource() {
-        let realm = try! Realm()
-        let personsB = realm.objects(Person).filter("lastName BEGINSWITH 'B'")
-        let personsM = realm.objects(Person).filter("lastName BEGINSWITH 'M'")
+        let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
         
-        let dataSource = DataSource([
-            RealmSection(title: "B", rowIdentifier: Identifiers.PersonCell.rawValue, results: personsB),
-            RealmSection(title: "M", rowIdentifier: Identifiers.PersonCell.rawValue, results: personsM)
-        ])
+        let sections = letters.map { letter -> SectionType in
+            let query = persons.filter("lastName BEGINSWITH '\(letter)'")
+            return RealmSection(title: "B", rowIdentifier: Identifiers.PersonCell.rawValue, results: query)
+        }
+        
+        let dataSource = DataSource(sections)
         
         tableDataSource = TableViewDataSource(
             dataSource: dataSource,

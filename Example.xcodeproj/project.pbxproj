@@ -29,6 +29,8 @@
 		391DD0241C0860EA0051E67E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391DD01D1C0860EA0051E67E /* RealmSwift.framework */; };
 		391DD0251C0860EA0051E67E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391DD01D1C0860EA0051E67E /* RealmSwift.framework */; };
 		391DD0261C0860EA0051E67E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391DD01D1C0860EA0051E67E /* RealmSwift.framework */; };
+		39489C6C1C08AA1F003CD3B4 /* names.json in Resources */ = {isa = PBXBuildFile; fileRef = 39489C6B1C08AA1F003CD3B4 /* names.json */; };
+		39D904251C08ABB700FEBEC1 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D904241C08ABB700FEBEC1 /* NameGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		391DD01B1C0860EA0051E67E /* DataSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DataSource.framework; path = Carthage/Build/iOS/DataSource.framework; sourceTree = "<group>"; };
 		391DD01C1C0860EA0051E67E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		391DD01D1C0860EA0051E67E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		39489C6B1C08AA1F003CD3B4 /* names.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = names.json; sourceTree = "<group>"; };
+		39D904241C08ABB700FEBEC1 /* NameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,8 @@
 				391DD0121C08608F0051E67E /* Person.swift */,
 				391DD0131C08608F0051E67E /* PersonCell.swift */,
 				391DD0141C08608F0051E67E /* RealmTableViewController.swift */,
+				39489C6B1C08AA1F003CD3B4 /* names.json */,
+				39D904241C08ABB700FEBEC1 /* NameGenerator.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 			files = (
 				391DCFDA1C085F930051E67E /* LaunchScreen.storyboard in Resources */,
 				391DCFD71C085F930051E67E /* Assets.xcassets in Resources */,
+				39489C6C1C08AA1F003CD3B4 /* names.json in Resources */,
 				391DCFD51C085F930051E67E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +384,7 @@
 			files = (
 				391DD0151C08608F0051E67E /* Person.swift in Sources */,
 				391DD0161C08608F0051E67E /* PersonCell.swift in Sources */,
+				39D904251C08ABB700FEBEC1 /* NameGenerator.swift in Sources */,
 				391DD0171C08608F0051E67E /* RealmTableViewController.swift in Sources */,
 				391DCFD01C085F930051E67E /* AppDelegate.swift in Sources */,
 			);
@@ -660,6 +668,7 @@
 				391DD00D1C085FE80051E67E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		391DD00F1C085FE80051E67E /* Build configuration list for PBXNativeTarget "RealmDataSourceTests" */ = {
 			isa = XCConfigurationList;
@@ -668,6 +677,7 @@
 				391DD0111C085FE80051E67E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
