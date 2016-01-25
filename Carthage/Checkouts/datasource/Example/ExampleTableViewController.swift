@@ -35,6 +35,11 @@ class ExampleTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: Examples
     
     /// demonstrates various ways to setup the same simple data source
@@ -60,8 +65,8 @@ class ExampleTableViewController: UITableViewController {
         
         tableDataSource = TableViewDataSource(
             dataSource: dataSource1,
-            configurator: TableViewCellConfigurator(Identifiers.TextCell.rawValue) { (title: String, cell: UITableViewCell, _) in
-                cell.textLabel?.text = title
+            configurator: TableViewCellConfigurator(Identifiers.TextCell.rawValue) { (title: String, cell: UITableViewCell, indexPath: NSIndexPath) in
+                cell.textLabel?.text = "\(indexPath.row): \(title)"
             })
         
         debugPrint(dataSource1)
@@ -180,6 +185,37 @@ class ExampleTableViewController: UITableViewController {
                 ]),
             Section(title: "Empty Section", rowIdentifier: Identifiers.TextCell.rawValue, rows: Array<String>()),
             Section(title: "Strings", rowIdentifier: Identifiers.TextCell.rawValue, rows: ["some text", "another text"]),
+            ])
+        
+        debugPrint(dataSource)
+        
+        tableDataSource = TableViewDataSource(
+            dataSource: dataSource,
+            configurators: [
+                TableViewCellConfigurator(Identifiers.PersonCell.rawValue) { (person: Person, cell: PersonCell, _) in
+                    cell.firstNameLabel?.text = person.firstName
+                    cell.lastNameLabel?.text = person.lastName
+                },
+                TableViewCellConfigurator(Identifiers.TextCell.rawValue) { (title: String, cell: UITableViewCell, _) in
+                    cell.textLabel?.text = title
+                },
+            ])
+    }
+    
+    /// example of an row creator closure
+    func setupExample6() {
+        let dataSource = DataSource([
+            Section(title: "test", rowCountClosure: { return 5 }, rowCreatorClosure: { (rowIndex) in
+                return Row(identifier: Identifiers.TextCell.rawValue, data: ((rowIndex + 1) % 2 == 0) ? "even" : "odd")
+            }),
+            Section<Any>(title: "mixed", rowCountClosure: { return 5 }, rowCreatorClosure: { (rowIndex) in
+                if rowIndex % 2 == 0 {
+                    return Row(identifier: Identifiers.TextCell.rawValue, data: "test")
+                }
+                else {
+                   return Row(identifier: Identifiers.PersonCell.rawValue, data: Person(firstName: "Max", lastName: "Mustermann"))
+                }
+            })
             ])
         
         debugPrint(dataSource)

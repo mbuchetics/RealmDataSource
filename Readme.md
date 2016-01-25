@@ -55,3 +55,15 @@ Then run `carthage update`.
 ### Manually
 
 Just drag and drop the `.swift` files in the `RealmDataSource` folder into your project.
+
+## License
+
+`DataSource` is available under the MIT license. See the [LICENSE](https://github.com/mbuchetics/DataSource/blob/master/LICENSE.md) file for details.
+
+## Contact
+
+Contact me at [matthias.buchetics.com](http://matthias.buchetics.com) or follow me on [Twitter](https://twitter.com/mbuchetics).
+
+Made with ❤ at [all about apps](https://www.allaboutapps.at).
+
+[<img src="https://github.com/mbuchetics/DataSource/blob/master/Resources/aaa_logo.png" height="60" alt="all about apps" />](https://www.allaboutapps.at)

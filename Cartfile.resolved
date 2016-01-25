@@ -1,2 +1,2 @@
-git "ssh://git@git.allaboutapps.at:2222/aaaios/datasource.git" "0.1"
-github "realm/realm-cocoa" "v0.96.2"
+github "mbuchetics/DataSource" "0.4.1"
+github "realm/realm-cocoa" "v0.96.3"

@@ -1,2 +1,2 @@
-git "ssh://git@git.allaboutapps.at:2222/aaaios/datasource.git"
+github "mbuchetics/DataSource" ~> 0.4
 github "realm/realm-cocoa" ~> 0.96

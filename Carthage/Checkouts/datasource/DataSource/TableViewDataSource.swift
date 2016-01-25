@@ -1,6 +1,6 @@
 //
 //  TableViewDataSource.swift
-//  Example
+//  DataSource
 //
 //  Created by Matthias Buchetics on 24/11/15.
 //  Copyright © 2015 aaa - all about apps GmbH. All rights reserved.
@@ -25,13 +25,13 @@ public class TableViewDataSource: NSObject {
     var configurators = Dictionary<String, TableViewCellConfiguratorType>()
     
     /// Initializes the table view data source with a single cell configurator
-    public init (dataSource: DataSource, configurator: TableViewCellConfiguratorType) {
+    public init(dataSource: DataSource, configurator: TableViewCellConfiguratorType) {
         self.dataSource = dataSource
         self.configurators[configurator.rowIdentifier] = configurator
     }
     
     /// Initializes the table view data source with multiple cell configurators
-    public init (dataSource: DataSource, configurators: Array<TableViewCellConfiguratorType>) {
+    public init(dataSource: DataSource, configurators: Array<TableViewCellConfiguratorType>) {
         self.dataSource = dataSource
         
         for configurator in configurators {
@@ -74,16 +74,18 @@ extension TableViewDataSource: UITableViewDataSource {
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let row = dataSource.rowAtIndexPath(indexPath)
-        let configurator = configuratorForRowIdentifier(row.identifier)!
+        
+        guard let configurator = configuratorForRowIdentifier(row.identifier) else {
+            fatalError("no cell configurator for rowIdentifier: \(row.identifier)")
+        }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(configurator.cellIdentifier, forIndexPath: indexPath)
-        
-        configurator.configureRow(row, cell: cell)
-        
+        configurator.configureRow(row, cell: cell, indexPath: indexPath)
         return cell
     }
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let showTitles = showSectionTitles ?? (dataSource.numberOfSections > 1)
+        let showTitles = showSectionTitles ?? (tableView.style == .Grouped || dataSource.numberOfSections > 1)
         
         if showTitles && dataSource.numberOfRowsInSection(section) > 0 {
             return dataSource.sections[section].title
