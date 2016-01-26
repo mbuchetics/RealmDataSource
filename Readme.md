@@ -16,28 +16,34 @@ An example app is included demonstrating RealmDataSource's functionality showing
 
 Setup your queries:
 
-    let realm = try! Realm()
-    let personsB = realm.objects(Person).filter("lastName BEGINSWITH 'B'")
-    let personsM = realm.objects(Person).filter("lastName BEGINSWITH 'M'")
+```swift
+let realm = try! Realm()
+let personsB = realm.objects(Person).filter("lastName BEGINSWITH 'B'")
+let personsM = realm.objects(Person).filter("lastName BEGINSWITH 'M'")
+```
 
 Use `RealmSection` instead of the `Section` and set your results:
-    
-    let dataSource = DataSource([
-        RealmSection(title: "B", rowIdentifier: Identifiers.PersonCell.rawValue, results: personsB),
-        RealmSection(title: "M", rowIdentifier: Identifiers.PersonCell.rawValue, results: personsM)
-    ])
+
+```swift    
+let dataSource = DataSource([
+    RealmSection(title: "B", rowIdentifier: Identifiers.PersonCell.rawValue, results: personsB),
+    RealmSection(title: "M", rowIdentifier: Identifiers.PersonCell.rawValue, results: personsM)
+])
+```
 
 Initialize your `TableViewDataSource` (see [DataSource](https://git.allaboutapps.at/projects/AAAIOS/repos/datasource/browse) for details):
     
-    tableDataSource = TableViewDataSource(
-        dataSource: dataSource,
-        configurator: TableViewCellConfigurator(Identifiers.PersonCell.rawValue) { (person: Person, cell: PersonCell, _) in
-            cell.firstNameLabel?.text = person.firstName
-            cell.lastNameLabel?.text = person.lastName
-        })
+```swift
+tableDataSource = TableViewDataSource(
+    dataSource: dataSource,
+    configurator: TableViewCellConfigurator(Identifiers.PersonCell.rawValue) { (person: Person, cell: PersonCell, _) in
+        cell.firstNameLabel?.text = person.firstName
+        cell.lastNameLabel?.text = person.lastName
+    })
 
-    tableView.dataSource = tableDataSource
-    tableView.reloadData()
+tableView.dataSource = tableDataSource
+tableView.reloadData()
+```
 
 
 ## Installation
@@ -47,7 +53,7 @@ Initialize your `TableViewDataSource` (see [DataSource](https://git.allaboutapps
 Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
 ```
-git "ssh://git@git.allaboutapps.at:2222/aaaios/realmdatasource.git"
+github "mbuchetics/RealmDataSource", ~> 1.0
 ```
 
 Then run `carthage update`.
