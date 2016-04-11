@@ -2,7 +2,7 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-Provides [Realm](https://realm.io) extensions for the [DataSource](https://git.allaboutapps.at/projects/AAAIOS/repos/datasource/browse) framework.
+Provides [Realm](https://realm.io) extensions for the [DataSource]https://github.com/mbuchetics/DataSource) framework.
 
 ## Platform
 
